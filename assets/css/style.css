@@ -211,13 +211,15 @@ body{
   object-fit: cover;
 }
 
-.fav-icon {
+.fav{
   position: absolute;
-  color: #c653bc;
-  font-size: 160%;
+  right: 3%;
+  bottom: 8%;
   z-index: 2;
-  left: 5%;
-  top: 5%;
+}
+
+.fav-icon {
+  color: #c653bc;
 }
 
 /* some font awesome issue with line-height, so needed to explictiy mention this*/
@@ -227,6 +229,7 @@ body{
 }
 
 /* To-do: add click effect on like button on event 'click' */
+/* Add here */
 
 .meta-list{
   display: flex;
@@ -317,6 +320,22 @@ body{
   min-width: 4px;
 }
 
+.separator{
+  width: 4px;
+  height: 4px;
+  background-color: var(--white-alpha-20);
+  border-radius: var(--radius-8);
+}
+
+.video-card{
+  background-image: url('../images/video-bg-icon.png');
+  aspect-ratio: 16/9;
+  flex-shrink: 0;
+  max-width: 500px;
+  width: calc(100% - 40px);
+  margin-bottom: 10px;
+}
+
 
 /* .slider-list */
 
@@ -402,7 +421,7 @@ body{
 }
 
 .search-field:hover{
-  box-shadow: 0 0 0 2px var(--on-surface-variant);
+  box-shadow: 0 0 0 3px var(--on-surface-variant);
 }
 
 .search-field:focus{
@@ -638,6 +657,7 @@ body{
 .control-inner{
   display: flex;
   gap: 12px;
+  overflow-x: overlay;
 }
 
 .control-inner::after{
@@ -666,11 +686,12 @@ body{
 
 .movie-card{
   position: relative;
-  min-width: 200px;
+  min-width: 160px;
+  width: 20%;
 }
 
 .movie-card .card-banner{
-  min-width: 100%;
+  width: 200px;
 }
 
 .movie-card .title{
@@ -695,8 +716,57 @@ body{
   #DETAIL PAGE
 \*-----------------------------------*/
 
+.backdrop-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 600px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
 
+.backdrop-image::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(0deg, hsla(250,13%,11%,1), hsla(250, 13%,11%,0.9));
+}
 
+.movie-detail .movie-poster{
+  max-width: 300px;
+  width: 100%;
+}
+
+.movie-detail .heading{
+  margin-block: 24px 12px;
+}
+
+.movie-detail :is(.meta-list, .genre){
+  color: var(--text-color);
+}
+
+.movie-detail .genre{
+  margin-block: 12px 16px;
+}
+
+.detail-list{
+  margin-block: 24px 32px;
+}
+
+.movie-detail .list-item{
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-block-end: 12px;
+}
+
+.movie-detail .list-name{
+  color: var(--text-color);
+  min-width: 112px;
+}
 
 
 /*-----------------------------------*\
