@@ -7,7 +7,6 @@
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 
@@ -152,12 +151,16 @@ body{
   border-radius: var(--radius-8);
 }
 
+body::-webkit-scrollbar{
+  width: 0;
+}
 
 /*-----------------------------------*\
   #REUSED STYLE
 \*-----------------------------------*/
 
-.search-wrapper::before{
+.search-wrapper::before,
+.load-more::before{
   position: absolute;
   top: 14px;
   right: 12px;
@@ -171,8 +174,29 @@ body{
   display: none;
 }
 
+.search-wrapper::before{
+  position: absolute;
+  top: 14px;
+  right: 12px;
+}
+
 .search-wrapper.searching::before{
   display: block;
+}
+
+.load-more{
+  background-color: var(--primary-variant);
+  margin-inline: auto;
+  margin-block: 36px 60px;
+}
+
+.load-more:is(:hover, :focus-visible){
+  --primary-variant: hsla(350, 67%, 39%,1);
+}
+
+.load-more.loading::before{
+  display: block;
+  position: inherit;
 }
 
 @keyframes loading {
@@ -213,8 +237,8 @@ body{
 
 .fav{
   position: absolute;
-  right: 3%;
-  bottom: 8%;
+  width: 100%;
+  text-align: right;
   z-index: 2;
 }
 
@@ -336,6 +360,20 @@ body{
   margin-bottom: 10px;
 }
 
+.container::after,
+.search-modal::after{
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background-image: linear-gradient(var(--bottom-overlay));
+  z-index: 1;
+  pointer-events: none;
+}
+
+
 
 /* .slider-list */
 
@@ -451,7 +489,7 @@ body{
 .sidebar{
   position: absolute;
   background-color: var(--background);
-  top: 96px;
+  top: 108px;
   bottom: 0;
   left: -340px;
   max-width: 340px;
@@ -534,7 +572,7 @@ body{
   opacity: 0;
   pointer-events: none;
   transition: var(--transition-short);
-  z-index: 3;
+  /* z-index: 3; */
 }
 
 .overlay.active{
@@ -555,17 +593,7 @@ body{
   z-index: 1;
 }
 
-.container::after{
-  content: "";
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  background-image: linear-gradient(var(--bottom-overlay));
-  z-index: 1;
-  pointer-events: none;
-}
+
 
 /* Banner */
 
@@ -687,11 +715,11 @@ body{
 .movie-card{
   position: relative;
   min-width: 160px;
-  width: 20%;
+  width: 100%;
 }
 
 .movie-card .card-banner{
-  width: 200px;
+  width: 100%;
 }
 
 .movie-card .title{
@@ -773,7 +801,20 @@ body{
   #MOVIE LIST PAGE
 \*-----------------------------------*/
 
+.genre-list .title-wrapper{
+  margin-block-end: 56px;
+}
 
+.grid-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  column-gap: 16px;
+  row-gap: 20px;
+}
+
+:is(.genre-list, .search-modal) :is(.movie-card, .card-banner){
+  width: 100%;
+}
 
 
 
@@ -781,7 +822,28 @@ body{
   #SEARCH MODAL
 \*-----------------------------------*/
 
+.search-modal{
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  background-color: var(--surface);
+  padding: 50px 24px;
+  overflow-y: overlay;
+  /* z-index: 2; */
+  display: none;
+}
 
+.search-modal.active{
+  display: block;
+}
+
+.search-modal .label{
+  color: var(--primary-variant);
+  font-weight: var(--weight-bold);
+  margin-block-end: 9px;
+}
 
 
 

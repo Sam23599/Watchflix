@@ -17,3 +17,5 @@ addEventOnElements(searchTogglers, "click", function(){
     searchBox.classList.toggle("active");
 });
 
+
+// TODO: Add like button feature

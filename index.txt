@@ -33,13 +33,15 @@ Adventure
 Drama
 Sci-Fi
 
-Language
+Category
 
-English
-Hindi
+Movie
+Series
 Bengali
 
-Copyright 2023
+Copyright 2023 
+                    <br>
+                   
 href = https://youtube.com/@codewithsadee
 codewithsadee
 
